@@ -14,4 +14,10 @@ export const upvoteArticle = (id) => ({
   id
 })
 
+export const addComment = (articleId, text) => ({
+  type: actionTypes.ADD_COMMENT,
+  articleId,
+  text
+})
+
 export const setVisibilityFilter = filter => ({ type: actionTypes.SET_VISIBILITY_FILTER, filter})

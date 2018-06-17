@@ -1,8 +1,8 @@
 import React, { Component }  from 'react'
 import PropTypes from 'prop-types'
 import Article from './Article'
-import Comment from './Comment'
-import { Accordion, AccordionItem } from 'react-sanfona';
+import CommentItem from './CommentItem'
+import articles from '../reducers/articles';
 
 export default class ArticleItem extends Component {
 
@@ -17,8 +17,17 @@ export default class ArticleItem extends Component {
 			commentnum: PropTypes.number.isRequired
 		}).isRequired,
 		comments: PropTypes.array.isRequired,
-		onUpvoteClicked: PropTypes.func.isRequired
+		onUpvoteClicked: PropTypes.func.isRequired,
+		onAddComment: PropTypes.func.isRequired
 	}
+
+	constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
 	getCommentLink = (commentnum) => {
     var commentText = '0 comment';
@@ -29,10 +38,20 @@ export default class ArticleItem extends Component {
     return (
       commentText
     );
-  }
+	}
+
+	handleChange(event) {
+    this.setState({ value: event.target.value });
+	}
+	
+	handleSubmit(event) {
+		alert('A comment was submitted: ' + this.state.value);
+		this.setState({ value: '' })
+    event.preventDefault();
+	}
 
   render() {
-		const { article, comments, onUpvoteClicked } = this.props
+		const { article, comments, onUpvoteClicked, onAddComment } = this.props
 
 		return (
 			<div style={{ marginBottom: 20 }}>
@@ -44,18 +63,9 @@ export default class ArticleItem extends Component {
 					time={article.time}
 					score={article.score}
 					commentnum={article.commentnum}
-					onUpvoteClicked={onUpvoteClicked} />
-				<Accordion>
-					<AccordionItem title={this.getCommentLink(article.commentnum)} expanded={false}>
-						{comments.map(comment => {
-							return (
-								<Comment key={comment.id} id={comment.id} author={comment.author} score={comment.score}
-									time={comment.time} parent={comment.parent} text={comment.text}
-								/>
-							)
-						})}
-					</AccordionItem>
-				</Accordion>
+					onUpvoteClicked={onUpvoteClicked}/>
+
+				<CommentItem comments={comments} onAddComment={onAddComment}/>
 			</div>
 		)
 	}

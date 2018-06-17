@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-
 var URL = require('url');
 var moment = require('moment');
 
@@ -19,11 +18,6 @@ export default class Article extends Component {
 
 	state = {
 		score: this.props.score
-	}
-
-	onUpvoteClickedLocal() {
-		console.log("local upvote clicked")
-		this.setState({ score: 0})
 	}
 
 	render() {
