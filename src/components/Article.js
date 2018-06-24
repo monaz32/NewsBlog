@@ -13,7 +13,8 @@ export default class Article extends Component {
 		time: PropTypes.number,
 		score: PropTypes.number,
 		commentnum: PropTypes.number,
-		onUpvoteClicked: PropTypes.func.isRequired
+		onUpvoteClicked: PropTypes.func.isRequired,
+		onDeleteArticle: PropTypes.func.isRequired
 	}
 
 	state = {
@@ -21,7 +22,7 @@ export default class Article extends Component {
 	}
 
 	render() {
-		const { id, author, title, url, time, score, commentnum, onUpvoteClicked } = this.props
+		const { id, author, title, url, time, score, commentnum, onUpvoteClicked, onDeleteArticle } = this.props
 
 		return (
 			<div>
@@ -36,7 +37,8 @@ export default class Article extends Component {
 						</span>
 					</div>
 					<div className="article-subtext">
-						{score} points by {author} | {moment.utc(time * 1000).fromNow()}
+						{score} points by {author} | {moment.utc(time * 1000).fromNow()} |
+						<button><img src="/trash.png" width="10" alt="delete post" onClick={onDeleteArticle} /></button>
 					</div>
 				</div>
 			</div>

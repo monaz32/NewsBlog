@@ -9,9 +9,39 @@ export default function(state = initialState, action) {
 
   switch (action.type) {
 		case actionTypes.DELETE_ARTICLE:
-			return state.filter(article =>
-				article.id !== action.articleId
+			// Need to delete this article's comments as well.
+			var idsToDelete = [action.id]
+			var toDeleteArticle = state.find(post =>
+				post.id === action.id
 			)
+			idsToDelete.push(...toDeleteArticle.kids)
+
+			return state.filter(post =>
+				idsToDelete.indexOf(post.id) === -1
+			)
+
+		case actionTypes.DELETE_COMMENT:
+			var toDeleteCommentIndex = state.findIndex(post =>
+				post.id === action.id
+			)
+
+			// Delete comment id from its parent.
+			var toDeleteComment = state[toDeleteCommentIndex]
+			var toDeleteCommentParentId = toDeleteComment.parent
+			state = state.map(post =>
+				{
+				if (post.id === toDeleteCommentParentId)  {
+					post.kids = post.kids.filter(commentId =>
+						commentId !== action.id
+					)
+				}
+				return post
+				}
+			)
+
+			state.splice(toDeleteCommentIndex, 1)
+
+			return state
 
 		case actionTypes.UPVOTE_POST:
 			return state.map(post =>

@@ -7,7 +7,8 @@ export default class CommentItem extends Component {
 	static propTypes = {
 		comments: PropTypes.array.isRequired,
 		onAddComment: PropTypes.func.isRequired,
-		onUpvoteClicked: PropTypes.func.isRequired
+		onUpvoteClicked: PropTypes.func.isRequired,
+		onDeleteComment: PropTypes.func.isRequired
 	}
 
 	constructor(props) {
@@ -44,7 +45,7 @@ export default class CommentItem extends Component {
   }
 
 	render() {
-		const { comments, onUpvoteClicked } = this.props
+		const { comments, onUpvoteClicked, onDeleteComment } = this.props
 
 		return (
 			<div>
@@ -54,6 +55,7 @@ export default class CommentItem extends Component {
 							return (
 								<Comment key={comment.id} id={comment.id} author={comment.author} score={comment.score}
 									time={comment.time} parent={comment.parent} text={comment.text} onUpvoteClicked={onUpvoteClicked}
+									onDeleteComment={onDeleteComment}
 								/>
 							)
 						})}

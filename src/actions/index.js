@@ -4,9 +4,14 @@ export const getAllArticles = () => ({
   type: actionTypes.GET_ALL_ARTICLES
 })
 
-export const deleteArticle = (articleId) => ({
+export const deleteArticle = (id) => ({
   type: actionTypes.DELETE_ARTICLE,
-  articleId
+  id
+})
+
+export const deleteComment = (id) => ({
+  type: actionTypes.DELETE_COMMENT,
+  id
 })
 
 export const upvotePost = (id) => ({

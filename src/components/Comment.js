@@ -11,11 +11,12 @@ export default class Comment extends Component {
 		time: PropTypes.number,
 		parent: PropTypes.number,
 		text: PropTypes.string,
-		onUpvoteClicked: PropTypes.func.isRequired
+		onUpvoteClicked: PropTypes.func.isRequired,
+		onDeleteComment: PropTypes.func.isRequired
 	}
-	
+
 	render() {
-		const { id, author, score, time, parent, text, onUpvoteClicked } = this.props
+		const { id, author, score, time, parent, text, onUpvoteClicked, onDeleteComment } = this.props
 
 		return (
 			<div style={{ marginBottom: 20 }}>
@@ -23,7 +24,8 @@ export default class Comment extends Component {
 					<button><img src="/upvotearrow.gif" width="10" alt="upvote button" onClick={() => onUpvoteClicked(id)} /></button>
 				</div>
 				<div className="comment-subtext">
-				{score} points by {author} | {moment.utc(time * 1000).fromNow()}
+				{score} points by {author} | {moment.utc(time * 1000).fromNow()} |
+				<button><img src="/trash.png" width="10" alt="delete post" onClick={() => onDeleteComment(id)} /></button>
 				</div>
 				<div className="comment-content">
 					{text}

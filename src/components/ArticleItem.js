@@ -18,7 +18,9 @@ export default class ArticleItem extends Component {
 		}).isRequired,
 		comments: PropTypes.array.isRequired,
 		onUpvoteClicked: PropTypes.func.isRequired,
-		onAddComment: PropTypes.func.isRequired
+		onAddComment: PropTypes.func.isRequired,
+		onDeleteArticle: PropTypes.func.isRequired,
+		onDeleteComment: PropTypes.func.isRequired
 	}
 
 	constructor(props) {
@@ -51,7 +53,7 @@ export default class ArticleItem extends Component {
 	}
 
   render() {
-		const { article, comments, onUpvoteClicked, onAddComment } = this.props
+		const { article, comments, onUpvoteClicked, onAddComment, onDeleteArticle, onDeleteComment } = this.props
 
 		return (
 			<div style={{ marginBottom: 20 }}>
@@ -63,9 +65,11 @@ export default class ArticleItem extends Component {
 					time={article.time}
 					score={article.score}
 					commentnum={article.commentnum}
-					onUpvoteClicked={onUpvoteClicked}/>
+					onUpvoteClicked={onUpvoteClicked}
+					onDeleteArticle={onDeleteArticle}/>
 
-				<CommentItem comments={comments} onAddComment={onAddComment} onUpvoteClicked={onUpvoteClicked}/>
+				<CommentItem comments={comments} onAddComment={onAddComment}
+					onUpvoteClicked={onUpvoteClicked} onDeleteComment={onDeleteComment}/>
 			</div>
 		)
 	}
