@@ -5,15 +5,6 @@ var moment = require('moment');
 
 const initialState = initialData;
 
-const addDeleteComment = (state, action) => {
-	switch (action.type) {
-		case actionTypes.ADD_COMMENT:
-			return [ ...state, action.childId ]
-		default:
-			return state
-	}
-}
-
 export default function(state = initialState, action) {
 
   switch (action.type) {
@@ -22,11 +13,11 @@ export default function(state = initialState, action) {
 				article.id !== action.articleId
 			)
 
-		case actionTypes.UPVOTE_ARTICLE:
-			return state.map(article =>
-				article.id === action.id ?
-					{ ...article, score: article.score+1 } :
-					article
+		case actionTypes.UPVOTE_POST:
+			return state.map(post =>
+				post.id === action.id ?
+					{ ...post, score: post.score+1 } :
+					post
 			)
 
 		case actionTypes.ADD_COMMENT:

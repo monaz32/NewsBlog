@@ -26,7 +26,7 @@ export default class Article extends Component {
 		return (
 			<div>
 				<div className="article-vote">
-					<button><img src="/upvotearrow.gif" width="10" alt="upvote button" onClick={onUpvoteClicked} /></button>
+					<button><img src="/upvotearrow.gif" width="10" alt="upvote button" onClick={() => onUpvoteClicked(id)} /></button>
 				</div>
 				<div className="article-itemText">
 					<div className="article-titletext">

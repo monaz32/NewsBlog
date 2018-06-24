@@ -2,7 +2,7 @@ import React, { Component }  from 'react'
 import PropTypes from 'prop-types'
 import Article from './Article'
 import CommentItem from './CommentItem'
-import articles from '../reducers/articles';
+//import articles from '../reducers/articles';
 
 export default class ArticleItem extends Component {
 
@@ -65,7 +65,7 @@ export default class ArticleItem extends Component {
 					commentnum={article.commentnum}
 					onUpvoteClicked={onUpvoteClicked}/>
 
-				<CommentItem comments={comments} onAddComment={onAddComment}/>
+				<CommentItem comments={comments} onAddComment={onAddComment} onUpvoteClicked={onUpvoteClicked}/>
 			</div>
 		)
 	}

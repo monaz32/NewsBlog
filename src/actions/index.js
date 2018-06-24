@@ -9,8 +9,8 @@ export const deleteArticle = (articleId) => ({
   articleId
 })
 
-export const upvoteArticle = (id) => ({
-  type: actionTypes.UPVOTE_ARTICLE,
+export const upvotePost = (id) => ({
+  type: actionTypes.UPVOTE_POST,
   id
 })
 
