@@ -1,8 +1,12 @@
 import React, { Component }  from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import Article from './Article'
 import CommentItem from './CommentItem'
-//import articles from '../reducers/articles';
+
+const ArticleItemBox = styled.div`
+	padding-bottom: 1.5em;
+`
 
 export default class ArticleItem extends Component {
 
@@ -56,7 +60,7 @@ export default class ArticleItem extends Component {
 		const { article, comments, onUpvoteClicked, onAddComment, onDeleteArticle, onDeleteComment } = this.props
 
 		return (
-			<div style={{ marginBottom: 20 }}>
+			<ArticleItemBox>
 				<Article
 					id={article.id}
 					author={article.author}
@@ -70,21 +74,7 @@ export default class ArticleItem extends Component {
 
 				<CommentItem comments={comments} onAddComment={onAddComment}
 					onUpvoteClicked={onUpvoteClicked} onDeleteComment={onDeleteComment}/>
-			</div>
+			</ArticleItemBox>
 		)
 	}
 }
-
-// ArticleItem.propTypes = {
-//   article: PropTypes.shape({
-//     id: PropTypes.number.isRequired,
-//     author: PropTypes.string.isRequired,
-// 		title: PropTypes.string.isRequired,
-// 		url: PropTypes.string.isRequired,
-// 		time: PropTypes.number.isRequired,
-// 		score: PropTypes.number.isRequired,
-// 		commentnum: PropTypes.number.isRequired
-//   }).isRequired
-// }
-
-// export default ArticleItem

@@ -1,7 +1,13 @@
 import React, { Component }  from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import Comment from './Comment'
 import { Accordion, AccordionItem } from 'react-sanfona';
+
+const CommentBox = styled.div`
+	margin: 0 2em;
+	color: white;
+`
 
 export default class CommentItem extends Component {
 	static propTypes = {
@@ -38,6 +44,7 @@ export default class CommentItem extends Component {
 		event.preventDefault();
 		if (!this.state.newCommentText.trim()) {
 			// Make sure we don't submit an empty comment.
+			alert('You cannot submit an empty comment!');
 			return
 		}
 		this.props.onAddComment(this.state.newCommentText);
@@ -48,7 +55,7 @@ export default class CommentItem extends Component {
 		const { comments, onUpvoteClicked, onDeleteComment } = this.props
 
 		return (
-			<div>
+			<CommentBox>
 				<Accordion>
 					<AccordionItem title={this.getCommentTitle(comments.length)} expanded={false}>
 						{comments.map(comment => {
@@ -61,8 +68,7 @@ export default class CommentItem extends Component {
 						})}
 
 						<form onSubmit={this.handleSubmitComment}>
-							<label>
-								Add a comment:
+							
 								<textarea
 									className='form-control'
 									type="text"
@@ -71,12 +77,11 @@ export default class CommentItem extends Component {
 									value={this.state.newCommentText}
 									onChange={this.handleChangeComment}
 								/>
-							</label>
-							<input type="submit" value="Submit" />
+							<input type="submit" value="Add Comment" />
 						</form>
 					</AccordionItem>
 				</Accordion>
-			</div>
+			</CommentBox>
 		)
 	}
 }
