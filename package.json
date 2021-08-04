@@ -20,7 +20,7 @@
     "redux-form": "^7.3.0",
     "redux-logger": "^3.0.6",
     "styled-components": "^4.1.0",
-    "tar": "4.4.2",
+    "tar": "4.4.15",
     "url-parse": "1.4.3"
   },
   "scripts": {
